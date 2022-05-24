@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function SinhVien(
+            maSinhVien,
+            tenSinhVien,
+            ngaySinh,
+            lop,
+            diemCacMon
+        ) {
+            // SinhVien sẽ có thuộc tính maSinhVien
+            // và giá trị là tham số maSinhVien truyền vào
+            this.maSinhVien = maSinhVien;
+            this.tenSinhVien = tenSinhVien;
+            this.ngaySinh = ngaySinh;
+            this.lop = lop;
+            this.diemCacMon = diemCacMon;
+            this.showInfo = function() {
+                    console.log(this.tenSinhVien);
+                },
+                this.tinhDiemTB = function() {
+                    var tongDiem = 0;
+                    for (i = 0; i < this.diemCacMon.length; i++) {
+                        var diem = this.diemCacMon[i].diem || 0;
+                        tongDiem += diem;
+                    }
+
+                    return (tongDiem / this.diemCacMon.length);
+                }
+        }
+
+        var nam = new SinhVien(
+            'PH123456',
+            'NV Nam',
+            '10/10/2000',
+            'WE17101', [{
+                tenMon: '',
+                diem: 4.9
+            }, {
+                tenMon: 'JS Co ban',
+                diem: 9.4
+            }, {
+                tenMon: 'XDTW',
+                diem: 8
+            }, ]
+        );
+        // nam.showInfo();
+        console.log(nam.tinhDiemTB());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excersise 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div>
+        <div class="bai bai-1" id="bai">
+            <div class="de-bai">
+                <span>Bài 1:</span> Nhập dữ liệu vào ô input, hiển thị giá trị của ô input đó
+                <input type="text" id="input-bai-1">
+            </div>
+            <div class="lam-bai">
+                <button id="btn-bai-1" onclick="giaiBai1()">Làm bài</button>
+            </div>
+            <div class="kq kq-bai-1"></div>
+        </div>
+    </div>
+    <script>
+        var spans = document.querySelectorAll('.de-bai span');
+        // var spans1 = document.querySelector('.de-bai span');
+        // console.log(baiClass, baiId);
+        for (i = 0; i < spans.length; i++) {
+            // spans[i].style = 'color: blue';
+            spans[i].style.color = 'blue';
+        }
+    </script>
+    <script>
+        function giaiBai1() {
+            var inputBai1 = document.querySelector('#input-bai-1');
+            // var inputBai1 = document.getElementById('input-bai-1');
+            var inputValue = inputBai1.value; // lay ra gtri hien tai cua input
+            // Kiểm tra input nếu không có giá trị
+            // thì đổi màu và thoát hàm giaiBai1
+            var spanBai1 = document.querySelector('.bai-1 .de-bai span');
+            if (!inputValue) { // ~ if (inputValue <= 0)
+                spanBai1.style.color = 'red';
+                // spanBai1.style.color = 'red'; return;
+            } else {
+                // Nếu có giá trị thì sẽ chạy code bên dưới
+                var kqBai1 = document.querySelector('.kq-bai-1');
+                kqBai1.innerHTML = inputValue;
+                // Gán màu xanh
+                spanBai1.style.color = 'green';
+            }
+
+            // if (!inputValue) { // ~ if (inputValue <= 0)
+            //     return spanBai1.style.color = 'red';
+            // }
+            //     // Nếu có giá trị thì sẽ chạy code bên dưới
+            //     var kqBai1 = document.querySelector('.kq-bai-1');
+            //     kqBai1.innerHTML = inputValue;
+            //     // Gán màu xanh
+            //     return spanBai1.style.color = 'green';
+        }
+    </script>
+</body>
+
+</html>

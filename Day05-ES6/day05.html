@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = 1;
+
+        function x() {
+            var a = 1;
+            var a = 2;
+            console.log('a trong x', a);
+        }
+
+        x();
+        console.log('a ngoai x', a);
+        // VD 2:
+        function y() {
+            var b = 5;
+            var b = 3; // Với var có thể khai báo nhiều lần và ghi đè giá trị
+            console.log('b trong y', b);
+        }
+
+        // console.log('b ngoai y', b);
+
+        // VD 3:
+        let c = 3;
+
+        function z() {
+            // let c = 5;
+            let c = 4; // Với let thì trong 1 phạm vi chỉ có 1 biến
+            console.log('c ben trong z', c);
+        }
+
+        function zz() {
+            // let d = {
+            //     name: 'tuan',
+            // };
+            const d = 'abc';
+            // const d1 = {
+            //     name: 12345,
+            // };
+            // d = 12345;
+            console.log(d);
+        }
+
+        zz();
+
+        console.log('c ben ngoai z', c);
+    </script>
+    <script type="module" src="Day06.js"></script>
+</body>
+
+</html>

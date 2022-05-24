@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excersise 3</title>
+</head>
+
+<body>
+    <div>
+        <div class="bai bai-3">
+            <div class="de-bai">
+                <span>Bài 3:</span> Nhập vào ô input các số cách nhau bởi dấu phẩy, hiển thị ra mảng gồm các số đó
+            </div>
+            <div class="lam-bai">
+                <button onclick="giaiBai3()">Làm bài</button>
+            </div>
+            <div class="kq kq-bai-3"></div>
+        </div>
+    </div>
+    <script>
+        var spans = document.querySelectorAll('.de-bai span');
+        for (i = 0; i < spans.length; i++) {
+            // spans[i].style = 'color: blue';
+            spans[i].style.color = 'blue';
+        }
+    </script>
+    <script>
+        function giaiBai3() {
+
+            var spanBai3 = document.querySelector('.bai-3 .de-bai span');
+            var kqbai3 = document.querySelector('.kq-bai-3');
+
+            if (!inputValue || !inputValue.includes('abc')) {
+                spanBai3.style.color = 'red';
+            }
+
+            if (!inputValue) {
+                return kqbai3.innerHTML = 'Chưa nhập';
+            }
+            if (!inputValue.includes('abc')) {
+                return kqbai3.innerHTML = 'Nhập số ';
+            }
+
+            spanBai2.style.color = 'green';
+            return kqbai3.innerHTML = 'hiển thị ra mảng';
+        }
+    </script>
+    </div>
+</body>
+
+</html>

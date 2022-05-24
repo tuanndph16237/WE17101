@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <input type="text" placeholder="Thêm giải thưởng">
+            <button>Thêm</button>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên giải thưởng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Giải 1</td>
+                    </tr>
+                    <tr>
+                        <td>Giải 2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script>
+        function VanDongVien(
+            ma_van_dong_vien,
+            ho_va_ten,
+            ngay_sinh,
+            giai_thuong
+        ) {
+            this.ma_van_dong_vien = ma_van_dong_vien;
+            this.ho_va_ten = ho_va_ten;
+            this.ngay_sinh = ngay_sinh;
+            this.giai_thuong = giai_thuong;
+
+            this.kiemTraDieuKien = function(ngay_to_chuc, tuoi_du_dk) {
+                // từ ngày sinh => ngày tổ chức cách nhau bn năm
+                var ngaySinhMoment = moment(this.ngay_sinh, 'DD/MM/YYYY');
+                var ngayToChucMoment = moment(ngay_to_chuc, 'DD/MM/YYYY');
+                var tuoiDiThi = ngayToChucMoment.diff(ngaySinhMoment, 'years');
+
+                // số năm đó có lớn hơn tuổi không
+                if (tuoiDiThi > tuoi_du_dk) {
+                    return true;
+                }
+                return false;
+            }
+            this.danhSachGiaiThuong = function() {
+                var tbodyElement = document.querySelector('tbody');
+                var tbodyContent = '';
+                for (i = 0; i < this.giai_thuong.length; i++) {
+                    tbodyContent += '<tr><td>' + this.giai_thuong[i] + '</td></tr>';
+                }
+                tbodyElement.innerHTML = tbodyContent;
+            }
+            this.themGiaiThuong = function(giai_thuong_moi) {
+                this.giai_thuong.push(giai_thuong_moi);
+            }
+        }
+        var congPhuong = new VanDongVien('CP', 'NCP', '10/10/1995', []);
+        // var kq = congPhuong.kiemTraDieuKien('12/05/2022', 18);
+        // var pvm = new VanDongVien('PVM', 'Pham Van Mach', '10/10/2004', '');
+        // console.log(pvm.kiemTraDieuKien('12/05/2022', 18));
+        congPhuong.themGiaiThuong('Cau thu xuat sac nhat');
+        congPhuong.danhSachGiaiThuong();
+        congPhuong.themGiaiThuong('Cau thu xuat sac nhi');
+        congPhuong.danhSachGiaiThuong();
+    </script>
+</body>
+
+</html>
