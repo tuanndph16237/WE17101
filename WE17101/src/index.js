@@ -6,7 +6,8 @@ import Home from './pages/home';
 import About from './pages/about';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import News from './pages/news';
-
+import Student from './pages/Student';
+import Users from './pages/lab3';
 //Khoi tao router
 
 const router = new Navigo('/', { linksSelector: 'a' })
@@ -15,17 +16,23 @@ function render(content) {
 
     document.querySelector('#header').innerHTML = Header.render();
     document.querySelector('#content').innerHTML = content;
+
     document.querySelector('#footer').innerHTML = Footer.render();
+    document.querySelector('#student').innerHTML = Student.render();
+    document.querySelector('#user').innerHTML = Users.render();
 }
 router.on({
     '/': () => render(Home.render()),
     '/about': () => render(About.render()),
     '/news': () => render(News.render()),
+    '/students': () => render(Student.render()),
+    '/users': () => render(Users.render()),
 });
 router.resolve();
 
 
-//render();
+// render();
+
 // --------------------------------
 
 
@@ -123,15 +130,32 @@ const setValueA = () => new Promise((resolve, reject) => {
             reject('bị lỗi');
         }
         // a = [1, 2, 3];
-    }, 1000);
+    }, 5000);
 });
 
 let a = [];
 
-setValueA()
-    .then((data) => { data.push(4); return data })
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));;
+// setValueA()
+//     .then((data) => {data.push(4); return data})
+//     .then((data) => console.log(data))
+//     .catch((error) => console.log(error));
+// ;
 
 // console.log(a);
 // async/await
+// - async: định nghĩa 1 hàm có thể xử lý vấn đề bất đồng bộ
+// - await: định nghĩa 1 câu lệnh cần phải được chờ thực thi rồi mới thực thi câu lệnh tiếp theo
+// -- await phải nằm trong 1 hàm async thì mới dùng được
+// -- await phải là 1 hàm trả về đối tượng Promise
+
+const printA = async() => {
+    // gọi hàm setValueA để chờ nhận kết quả [1, 2, 3]
+    const result = await setValueA(); // giá trị được truyền vào trong resolve()
+    // chờ setValueA thực thi xong và trả về kq [1,2,3];
+    // thì mới chạy dòng tiếp theo là console.log
+    console.log('chờ result nhận kết quả rồi mới ra log này', result);
+    result.push(4);
+    console.log('sau khi thực hiện push ra kq này:', result);
+};
+
+printA();
