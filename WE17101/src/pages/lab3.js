@@ -9,13 +9,13 @@ const Users = {
 
                 return `<div>
 ${
-    students.map((user) => (
-        `<div>
-            <div>ID: ${user.id}</div>
-            <div>Name: ${user.name}</div>
-            <div>MSV: ${user.msv}</div>
-        </div>`
-    ))
+students.map((user) => (
+    `<div>
+        <div>ID: ${user.id}</div>
+        <div>Name: ${user.name}</div>
+        <div>MSV: ${user.msv}</div>
+    </div>`
+))
 }
 </div>`
 },

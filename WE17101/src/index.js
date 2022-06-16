@@ -1,35 +1,46 @@
-import Navigo from 'navigo'; //import navigo
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-//import 'bootstrap';
-import Home from './pages/home';
-import About from './pages/about';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import News from './pages/news';
+// import Navigo from '../node_modules/navigo';
+// import Navigo from 'navigo';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import News from './pages/News';
 import Student from './pages/Student';
-import Users from './pages/lab3';
-//Khoi tao router
+import StudentDetail from './pages/StudentDetail';
+import StudentAdd from './pages/StudentAdd';
 
-const router = new Navigo('/', { linksSelector: 'a' })
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function render(content) {
+// Khởi tạo đối tượng router
+// const router = new Navigo('/', { linksSelector: 'a' });
+// router.navigate('/students');
+import router from './helpers/router';
+import CartDetail from './pages/CartDetail';
 
+const render = async(content, id) => {
+    // content sẽ là toàn bộ component
+    // cần thêm tham số vào hàm này để truyền id cho những phần detail
     document.querySelector('#header').innerHTML = Header.render();
-    document.querySelector('#content').innerHTML = content;
-
+    document.querySelector('#content').innerHTML = await content.render(id);
     document.querySelector('#footer').innerHTML = Footer.render();
-    document.querySelector('#student').innerHTML = Student.render();
-    document.querySelector('#user').innerHTML = Users.render();
-}
+
+    // Sau khi content đã render xong thì afterRender mới được chạy
+    if (content.afterRender) {
+        content.afterRender(id);
+    }
+};
+
 router.on({
-    '/': () => render(Home.render()),
-    '/about': () => render(About.render()),
-    '/news': () => render(News.render()),
-    '/students': () => render(Student.render()),
-    '/users': () => render(Users.render()),
+    '/': () => render(Home),
+    '/about': () => render(About),
+    '/news': () => render(News),
+    '/students': () => render(Student),
+    '/students/:id': (data) => render(StudentDetail, data.data.id),
+    '/students/add': () => render(StudentAdd),
+    '/students/edit/:id': (data) => render(StudentAdd, data.data.id),
+    '/cart-detail': () => render(CartDetail)
 });
 router.resolve();
-
 
 // render();
 
